@@ -33,7 +33,6 @@ export function useAllTodo() {
         },
       })
       .then((response) => {
-        // console.log(response.data.AllTodo);
         setAllTodo(response.data.AllTodo);
         setLoading(false);
       })
@@ -42,6 +41,5 @@ export function useAllTodo() {
         setLoading(true);
       });
   }, []);
-  //   console.log(alltodo);
   return { alltodo, loading };
 }

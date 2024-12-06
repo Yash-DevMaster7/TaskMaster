@@ -4,10 +4,8 @@ const Navbar = () => {
   const handleAuth = () => {
     const token = localStorage.getItem("token");
     if (token === null || token === "" || !token) {
-      // console.log(false);
       return false;
     }
-    // console.log(true);
     return true;
   };
 
