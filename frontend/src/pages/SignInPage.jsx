@@ -51,6 +51,7 @@ const SignInPage = () => {
               id="email"
               type="email"
               value={email}
+              placeholder="Enter your Email"
               onChange={(e) => setEmail(e.target.value)}
               className={`w-full px-3 py-2 border rounded-md ${
                 errors.email ? "border-red-500" : "border-gray-300"
@@ -71,6 +72,7 @@ const SignInPage = () => {
               id="password"
               type="password"
               value={password}
+              placeholder="Enter your Password"
               onChange={(e) => setPassword(e.target.value)}
               className={`w-full px-3 py-2 border rounded-md ${
                 errors.password ? "border-red-500" : "border-gray-300"
