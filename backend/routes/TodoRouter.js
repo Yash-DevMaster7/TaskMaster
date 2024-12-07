@@ -7,6 +7,7 @@ const { Todo } = require("../db/db");
 const TodoRouter = express.Router();
 const { authMiddleware } = require("../middlewares/authmiddleware");
 
+// Route to create new todo
 TodoRouter.post("/", authMiddleware, async (req, res) => {
   const body = req.body;
   const response = validateCreateTodo(body);
@@ -31,6 +32,7 @@ TodoRouter.post("/", authMiddleware, async (req, res) => {
   }
 });
 
+// Route to update an individual todo
 TodoRouter.put("/:id", authMiddleware, async (req, res) => {
   const body = req.body;
   const todoId = req.params.id;
@@ -58,27 +60,7 @@ TodoRouter.put("/:id", authMiddleware, async (req, res) => {
   }
 });
 
-TodoRouter.put("/isCompleted/:id", authMiddleware, async (req, res) => {
-  const todoId = req.params.id;
-  try {
-    await Todo.updateOne(
-      {
-        _id: todoId,
-      },
-      {
-        isCompleted: true,
-      }
-    );
-    return res.json({
-      message: "Todo isCompleted updated successfully",
-    });
-  } catch (error) {
-    return res.json({
-      message: "Error while updating Todo isCompleted",
-    });
-  }
-});
-
+// Route to fetch all todos of a user
 TodoRouter.get("/all", authMiddleware, async (req, res) => {
   const Id = req.id;
   try {
@@ -95,6 +77,7 @@ TodoRouter.get("/all", authMiddleware, async (req, res) => {
   }
 });
 
+// Route for fetching an individual todo
 TodoRouter.get("/:id", authMiddleware, async (req, res) => {
   const todoId = req.params.id;
   try {
@@ -111,6 +94,7 @@ TodoRouter.get("/:id", authMiddleware, async (req, res) => {
   }
 });
 
+// Route to delete an individual todo
 TodoRouter.delete("/:id", authMiddleware, async (req, res) => {
   const todoId = req.params.id;
   try {
