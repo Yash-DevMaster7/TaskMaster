@@ -19,22 +19,22 @@ const Navbar = () => {
                 to={handleAuth() ? "/profile" : "/"}
                 className="flex items-center py-4 px-2"
               >
-                <span className="font-semibold text-teal-700 text-lg">
+                <span className="font-extrabold text-teal-700 text-lg md:text-2xl">
                   TaskMaster
                 </span>
               </Link>
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
             <Link
               to={"/signin"}
-              className="py-2 px-4 font-medium text-teal-500 border-2 border-teal-500 rounded-full hover:bg-teal-500 hover:text-white transition duration-300"
+              className="py-2 px-3 md:px-5 font-light md:font-medium text-teal-500 border-2 border-teal-500 rounded-full hover:bg-teal-500 hover:text-white transition duration-300"
             >
               Sign In
             </Link>
             <Link
               to={"/signup"}
-              className="py-2 px-6 font-medium text-white bg-teal-500 rounded-lg shadow-md hover:bg-teal-600 transition duration-300"
+              className="py-2 px-3 md:px-6 font-light md:font-medium text-white bg-teal-500 rounded-lg shadow-md hover:bg-teal-600 transition duration-300"
             >
               Sign Up
             </Link>

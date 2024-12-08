@@ -48,7 +48,7 @@ const SignUpPage = () => {
           <div className="space-y-2">
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-bold text-gray-700"
             >
               Full Name
             </label>
@@ -56,6 +56,7 @@ const SignUpPage = () => {
               id="name"
               type="text"
               value={name}
+              placeholder="Enter your Full name"
               onChange={(e) => setname(e.target.value)}
               className={`w-full px-3 py-2 border rounded-md ${
                 errors.name ? "border-red-500" : "border-gray-300"
@@ -68,7 +69,7 @@ const SignUpPage = () => {
           <div className="space-y-2">
             <label
               htmlFor="username"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-bold text-gray-700"
             >
               Username
             </label>
@@ -76,6 +77,7 @@ const SignUpPage = () => {
               id="username"
               type="text"
               value={username}
+              placeholder="Enter your Username"
               onChange={(e) => setUsername(e.target.value)}
               className={`w-full px-3 py-2 border rounded-md ${
                 errors.username ? "border-red-500" : "border-gray-300"
@@ -88,7 +90,7 @@ const SignUpPage = () => {
           <div className="space-y-2">
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-bold text-gray-700"
             >
               Email
             </label>
@@ -96,6 +98,7 @@ const SignUpPage = () => {
               id="email"
               type="email"
               value={email}
+              placeholder="Enter your Email"
               onChange={(e) => setEmail(e.target.value)}
               className={`w-full px-3 py-2 border rounded-md ${
                 errors.email ? "border-red-500" : "border-gray-300"
@@ -108,7 +111,7 @@ const SignUpPage = () => {
           <div className="space-y-2">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-bold text-gray-700"
             >
               Password
             </label>
@@ -116,6 +119,7 @@ const SignUpPage = () => {
               id="password"
               type="password"
               value={password}
+              placeholder="Enter your Password"
               onChange={(e) => setPassword(e.target.value)}
               className={`w-full px-3 py-2 border rounded-md ${
                 errors.password ? "border-red-500" : "border-gray-300"
