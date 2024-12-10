@@ -13,8 +13,8 @@ function validateSignup(body) {
 
 function validateLogin(body) {
   const schema = zod.object({
-    email: zod.string().email(),
-    password: zod.string(),
+    email: zod.string().min(4).max(40).email(),
+    password: zod.string().min(8).max(30),
   });
   const response = schema.safeParse(body);
   return response.success;

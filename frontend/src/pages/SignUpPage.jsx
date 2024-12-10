@@ -33,8 +33,10 @@ const SignUpPage = () => {
         email,
         password,
       });
-      localStorage.setItem("token", response.data.token);
-      navigate("/profile");
+      if (response.status === 201) {
+        localStorage.setItem("token", response.data.token);
+        navigate("/profile");
+      }
     }
   };
 

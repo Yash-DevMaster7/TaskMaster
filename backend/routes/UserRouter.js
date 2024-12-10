@@ -25,12 +25,12 @@ UserRouter.post("/signup", async (req, res) => {
     email: body.email,
   });
   if (!response) {
-    return res.json({
+    return res.status(411).json({
       message: "Sign up details not validated",
     });
   }
   if (ifExists) {
-    return res.json({
+    return res.status(401).json({
       message: "User already exists",
     });
   }
@@ -48,11 +48,11 @@ UserRouter.post("/signup", async (req, res) => {
       },
       jwtsecret
     );
-    return res.json({
+    return res.status(201).json({
       token,
     });
   } catch (e) {
-    return res.json({
+    return res.status(500).json({
       message: "Error while creating user",
     });
   }
@@ -66,13 +66,13 @@ UserRouter.post("/login", async (req, res) => {
     email: body.email,
   });
   if (!response) {
-    return res.json({
+    return res.status(411).json({
       message: "Log in details not validated",
     });
   }
   if (!ifExists) {
-    return res.json({
-      message: "User don't exists",
+    return res.status(404).json({
+      message: "User not found",
     });
   }
   const isValidPassword = bcryptjs.compareSync(
@@ -80,7 +80,7 @@ UserRouter.post("/login", async (req, res) => {
     ifExists.password
   );
   if (!isValidPassword) {
-    return res.json({
+    return res.status(401).json({
       message: "Invalid password",
     });
   }
@@ -92,11 +92,11 @@ UserRouter.post("/login", async (req, res) => {
       },
       jwtsecret
     );
-    return res.json({
+    return res.status(201).json({
       token,
     });
   } catch (e) {
-    return res.json({
+    return res.status(500).json({
       message: "Error while creating user",
     });
   }
@@ -108,11 +108,16 @@ UserRouter.get("/profile", authMiddleware, async (req, res) => {
     const user = await User.findById({
       _id: req.id, //from authMiddleware
     });
-    return res.json({
+    if (!user) {
+      return res.status(404).json({
+        message: "User  not found",
+      });
+    }
+    return res.status(200).json({
       user,
     });
   } catch (error) {
-    return res.json({
+    return res.status(500).json({
       message: "Error while fetching user details",
     });
   }
@@ -123,7 +128,7 @@ UserRouter.put("/update", authMiddleware, async (req, res) => {
   const body = req.body;
   const response = validateUpdateDetails(body);
   if (!response) {
-    return res.json({
+    return res.status(411).json({
       message: "Update user details not validated",
     });
   }
@@ -134,11 +139,11 @@ UserRouter.put("/update", authMiddleware, async (req, res) => {
       },
       body
     );
-    return res.json({
+    return res.status(201).json({
       message: "User details updated successfully",
     });
   } catch (error) {
-    return res.json({
+    return res.status(500).json({
       message: "Error while updating user details",
     });
   }
@@ -149,7 +154,7 @@ UserRouter.put("/update/pswd", authMiddleware, async (req, res) => {
   const id = req.id;
   const response = validateUpdatePassword(req.body);
   if (!response) {
-    return res.json({
+    return res.status(411).json({
       message: "Update password not validated",
     });
   }
@@ -159,7 +164,7 @@ UserRouter.put("/update/pswd", authMiddleware, async (req, res) => {
     _id: id, // from authMiddleware
   });
   if (!ifExists) {
-    return res.json({
+    return res.status(404).json({
       message: "User not found",
     });
   }
@@ -172,11 +177,11 @@ UserRouter.put("/update/pswd", authMiddleware, async (req, res) => {
         password: hash,
       }
     );
-    return res.json({
+    return res.status(200).json({
       message: "Password updated successfully",
     });
   } catch (error) {
-    return res.json({
+    return res.status(500).json({
       error,
     });
   }
